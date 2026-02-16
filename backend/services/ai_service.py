@@ -10,6 +10,7 @@ client = OpenAI(
 )
 
 def analyze_resume_text(text: str):
+
     response = client.chat.completions.create(
         model=os.getenv("AI_MODEL"),
         messages=[
@@ -17,5 +18,6 @@ def analyze_resume_text(text: str):
             {"role": "user", "content": text}
         ],
         response_format={ "type": "json_object" } # Ensure AI returns valid JSON
-    )
+    )    
+    
     return response.choices[0].message.content
